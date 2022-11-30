@@ -1,0 +1,271 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --light-primary: #323238;
+  --light-card-bg: #E1E1E6;
+
+  --dark-primary: white;
+  --dark-secondary: #C4C4CC;
+  --dark-card-bg: #29292E;
+  --dark-bg: #121214;
+  --dark-selected-bg-color: #0A3442;
+
+  --selected-card-bg-color: #02799D;
+  --selected-card-icon-color: white;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  color: var(--light-primary);
+
+  display: grid;
+  min-height: 100vh;
+
+  padding: 5rem;
+}
+
+.light-mode,
+.dark-mode {
+  position: fixed;
+  right: 3rem;
+  top: 3rem;
+  width: 3rem;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+main {
+  display: flex;
+  gap: 15rem;
+
+  align-self: center;
+  justify-self: center;
+}
+
+#timer {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 8.8rem;
+
+  margin-bottom: 1.5rem;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-wrapper {
+  align-self: center;
+  justify-self: center;
+}
+
+button {
+  border: none;
+  background: none;
+
+  cursor: pointer;
+}
+
+button svg {
+  width: 4rem;
+}
+
+.plus-minutes svg:active,
+.minus-minutes svg:active {
+  opacity: 0.5;
+}
+
+.clicked svg path {
+  fill: var(--selected-card-bg-color);
+}
+
+.sounds-wrapper {
+  display: grid;
+  grid-template-columns: 13.8rem 13.8rem;
+  grid-row: auto auto;
+  grid-column-gap: 3.2rem;
+  grid-row-gap: 3.2rem;
+}
+
+.sound-forest,
+.sound-rain,
+.sound-cafeteria,
+.sound-fireplace {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light-card-bg);
+  width: clamp(8rem, 8rem + 10vw, 13.8rem);
+  height: clamp(15rem, 5rem + 10vh, 15.2rem);
+
+  border-radius: 2.4rem;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.sound-forest svg path,
+.sound-rain svg path,
+.sound-cafeteria svg path,
+.sound-fireplace svg path {
+  fill: var(--light-primary);
+}
+
+.sound-on {
+  background-color: var(--selected-card-bg-color);
+}
+
+.sound-on svg path {
+  fill: var(--selected-card-icon-color);
+}
+
+.volume-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: 3rem;
+}
+
+.volume-wrapper p {
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+
+  margin-bottom: -1rem;
+}
+
+.volume-slider {
+  width: 20rem;
+}
+
+input[type=range] {
+  appearance: none;
+  width: 100%;
+  margin-top: 2.5rem;
+  border-radius: 999px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 999px;
+  background-color: var(--light-primary);
+  cursor: pointer;
+  margin-top: -.5rem;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  appearance: none;
+  height: .5rem;
+  cursor: pointer;
+  background-color: var(--light-primary);
+  border-radius: 999px;
+}
+
+.sound-on input[type=range]::-webkit-slider-thumb,
+.sound-on input[type=range]::-webkit-slider-runnable-track {
+  background: white;
+}
+
+/* dark mode */
+
+.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-primary);
+}
+
+.dark button svg path {
+  fill: var(--dark-secondary);
+}
+
+.dark .sound-forest,
+.dark .sound-rain,
+.dark .sound-cafeteria,
+.dark .sound-fireplace {
+  background: var(--dark-card-bg);
+}
+
+.dark .sound-forest svg path,
+.dark .sound-rain svg path,
+.dark .sound-cafeteria svg path,
+.dark .sound-fireplace svg path{
+  fill: var(--dark-secondary);
+}
+
+.dark input[type=range]::-webkit-slider-thumb,
+.dark input[type=range]::-webkit-slider-runnable-track {
+  background-color: var(--dark-primary);
+}
+
+.dark .sound-on {
+  background-color: var(--dark-selected-bg-color);
+}
+
+.dark .sound-on svg path {
+  fill: var(--selected-card-icon-color);
+}
+
+.dark .clicked svg path {
+  fill: var(--dark-selected-bg-color);
+}
+
+/* media queries */
+
+@media (max-width: 425px){
+  body {
+    padding: 0.5rem;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: auto;
+    grid-row: auto auto auto;
+
+    gap: 5rem;
+  }
+
+  .volume-wrapper {
+    align-self: center;
+    justify-self: center;
+    margin-top: 3em;
+    margin-bottom: 2rem;
+  }
+
+  .sounds-wrapper {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .sound-forest,
+  .sound-rain,
+  .sound-cafeteria,
+  .sound-fireplace {
+    width: clamp(3rem, 5rem + 2vw, 7rem);
+    height: 8rem;
+  }
+
+  .sound-forest svg,
+  .sound-rain svg,
+  .sound-cafeteria svg,
+  .sound-fireplace svg {
+    width: 3rem;
+  }
+}
